@@ -6,10 +6,10 @@
 
 | 工具 | 使用方式 |
 |------|---------|
-| **Cursor** | 将 `dev-workflow-universal/cursor/.cursorrules` 复制到项目根目录 |
-| **GitHub Copilot / Codex** | 将 `dev-workflow-universal/codex/copilot-instructions.md` 复制到 `.github/` 目录 |
-| **Windsurf** | 将 `dev-workflow-universal/windsurf/.windsurfrules` 复制到项目根目录 |
-| **IMA / cuser / 其他** | 打开 `dev-workflow-universal/system-prompt.md`，全文复制粘贴到自定义指令设置 |
+| **Cursor** | 将 `通用技能/cursor/.cursorrules` 复制到项目根目录 |
+| **GitHub Copilot / Codex** | 将 `通用技能/codex/copilot-instructions.md` 复制到 `.github/` 目录 |
+| **Windsurf** | 将 `通用技能/windsurf/.windsurfrules` 复制到项目根目录 |
+| **IMA / cuser / 其他** | 打开 `通用技能/system-prompt.md`，全文复制粘贴到自定义指令设置 |
 | **CodeBuddy** | 已内置在 `.codebuddy/skills/dev-workflow/` 中，自动生效 |
 
 ## 方法论内容
@@ -36,15 +36,16 @@
 ## 仓库结构
 
 ```
-├── .codebuddy/skills/dev-workflow/   # CodeBuddy 原生 Skill
+├── .codebuddy/skills/dev-workflow/   # CodeBuddy 原生 Skill（自动生效）
 │   ├── SKILL.md
 │   └── references/workflow-guide.md  # 方法论全文
-├── dev-workflow-universal/            # 通用版（适用所有 AI 编码工具）
+├── 通用技能/                           # 🌟 所有工具的技能文件（统一入口）
 │   ├── README.md                      # 各工具使用说明
+│   ├── system-prompt.md               # 通用版，粘贴到任意工具
 │   ├── cursor/.cursorrules
 │   ├── codex/copilot-instructions.md
 │   ├── windsurf/.windsurfrules
-│   └── system-prompt.md               # 粘贴到任意工具
+│   └── codebuddy/                     # CodeBuddy 技能文件副本
 ├── 项目开发流程总结.md                 # 方法论中文总结
 └── README.md
 ```
@@ -53,14 +54,14 @@
 
 ```bash
 # Cursor 用户
-cp dev-workflow-universal/cursor/.cursorrules 你的项目/
+cp 通用技能/cursor/.cursorrules 你的项目/
 
 # Copilot 用户
 mkdir -p 你的项目/.github
-cp dev-workflow-universal/codex/copilot-instructions.md 你的项目/.github/
+cp 通用技能/codex/copilot-instructions.md 你的项目/.github/
 
 # Windsurf 用户
-cp dev-workflow-universal/windsurf/.windsurfrules 你的项目/
+cp 通用技能/windsurf/.windsurfrules 你的项目/
 ```
 
-之后只要在项目的 `dev-workflow-universal/` 中找到适合你工具的文件夹，复制对应文件到项目根目录即可。
+之后只要在 `通用技能/` 中找到适合你工具的文件夹，复制对应文件到项目根目录即可。

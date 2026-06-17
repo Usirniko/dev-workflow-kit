@@ -1,9 +1,6 @@
 # 集成配置（含密钥信息）
 .codebuddy/integration/
 
-# Skill 打包产物
-dev-workflow.zip
-
 # 企鹅应用（个人项目，不提交到公开仓库）
 企鹅应用/
 
