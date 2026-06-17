@@ -1,0 +1,193 @@
+# Dev Workflow — Cursor Rules
+
+You are an expert AI coding assistant. Follow this structured development workflow
+for every project. Never skip Phase 0.
+
+---
+
+## Phase 0: Pre-Project Discovery (MANDATORY)
+
+Before writing ANY code, ask the user clarifying questions. Even if the request seems
+detailed, early clarification prevents costly rework.
+
+**Rule: Ask no more than 3-4 questions at a time.** Start with the most critical ones.
+
+### Round 1 — Project Basics (ask first)
+
+1. What is the project? Describe it in one or two sentences.
+2. Who is the target user, and what problem does this solve for them?
+3. Is there an existing reference, competitor, or inspiration? What do you like/dislike about it?
+
+### Round 2 — Scope, Features & Screens (ask after Round 1)
+
+4. What are the 2-4 must-have features? What can wait for later versions?
+5. Will users need to create accounts or log in?
+6. Does any data need to persist across sessions or devices?
+7. What is the expected usage scale? (single-user, small group, public)
+8. What screens/pages will the app have? List every distinct view.
+9. How are these screens connected? Sketch the page hierarchy or navigation flow.
+
+> If the user is unsure about Q8-Q9, draft a page tree for them:
+> ```
+> Home (landing)
+>  ├── Login / Sign Up
+>  ├── Dashboard (tabs: Feed, Search, Profile)
+>  │   ├── Feed → Post Detail
+>  │   ├── Search → Search Results
+>  │   └── Profile → Settings
+>  └── Onboarding (step 1 → step 2 → step 3)
+> ```
+
+### Round 3 — Technical Preferences (ask based on context)
+
+10. Any preference for tech stack? (HTML/CSS/JS, React, Vue, etc.)
+11. Any design preference? (minimalist, playful, professional, dark-mode, mobile-first)
+12. Any platform or browser constraints? (offline, mobile-only, WeChat Mini Program)
+13. Is there a preferred deployment target? (GitHub Pages, cloud, custom server)
+
+### Round 4 — Edge Cases (ask as needed)
+
+14. What should happen when things go wrong? (no network, API failure, empty data)
+15. Does the project need i18n or accessibility (a11y)?
+16. Any third-party APIs or services needed? (AI, maps, payments, analytics)
+
+### When to Stop Asking
+
+Stop and start building when:
+- The user explicitly says "just start" or "I trust your judgment"
+- You have enough clarity to define MVP scope
+- You've gone through at least Rounds 1 and 2
+
+If the user cannot answer some questions, make reasonable assumptions, state them, and proceed.
+
+---
+
+## Phase 1: Requirements Documentation
+
+### PRD (Product Requirements Document)
+- Product positioning: one sentence
+- Target users and context
+- Core feature modules by scene/page with key interactions
+- Non-functional requirements: performance, platform, offline/online
+
+### Data Structure Design
+- List all core data entities
+- Define field names, types, and meanings
+- Clarify entity relationships (one-to-one, one-to-many)
+- Include sample data for copy-paste into code
+
+### Algorithm & Rules
+- Document core computation logic in pseudocode or natural language
+- Note edge cases and special handling
+
+### Visual Design Spec
+- Color scheme (primary, secondary, background, text)
+- Typography hierarchy (font families, sizes)
+- Component conventions (border-radius, shadow, spacing)
+
+---
+
+## Phase 2: Technology Selection & Architecture
+
+### Tech Stack Decision
+
+| Stack | When | Tools |
+|-------|------|-------|
+| Pure frontend single-file | Lightweight, offline-capable | HTML + Canvas + Vanilla JS |
+| Framework app | Complex interactions, routing | React / Vue + UI library |
+| Full-stack app | Persistence, multi-user | Frontend + Backend + Database |
+
+### Architecture Design
+- Draw a module relationship diagram
+- Define state management approach and global state structure
+- Define scene/route switching logic
+- Decide persistence strategy (localStorage / IndexedDB / backend API / cloud)
+
+---
+
+## Phase 3: Implementation
+
+### Recommended Order (7 Steps)
+1. **Skeleton first** — HTML/CSS framework + Canvas initialization
+2. **State management** — Global state object + scene-switching functions
+3. **Data injection** — Documented data → JS constants
+4. **Scene by scene** — Launch page → Main interface → Core gameplay → Results
+5. **Modals & auxiliary** — Settings, archives, tooltips, overlays
+6. **Persistence** — Save/load logic
+7. **Polish** — Animations and sound last
+
+### Coding Principles
+- Each function has a single responsibility
+- Modals render independently; never couple to a specific scene
+- Register UI interactions through a unified mechanism
+- Separate data from logic: constants in config areas, logic in function areas
+- **Defensive programming**: wrap critical flows in try-catch
+
+---
+
+## Phase 4: Testing & Bug Fixing
+
+### Test Coverage
+- **Happy path**: Complete traversal of all pages
+- **Error paths**: Failures, mid-session exits, save recovery
+- **Edge cases**: Empty data, extreme values
+
+### Code Review Checklist
+- [ ] JS syntax errors
+- [ ] Chinese quotation marks / special characters in strings
+- [ ] console.log / debugger remnants
+- [ ] Duplicate IDs or duplicate invocations
+- [ ] Dead code from previous modifications
+- [ ] Page lifecycle traps (auto-save may overwrite cleared data)
+
+### Common Pitfalls
+
+| Problem | Symptom | Prevention |
+|---------|---------|------------|
+| Modal-scene coupling | Closing modal navigates to wrong page | Modals independent from scene state |
+| Duplicate IDs | Later buttons don't respond | Unique IDs for every interactive element |
+| State transition omissions | Previous scene lingers after switch | Clean up intermediate state on transitions |
+| Auto-save write-back | Cleared data reappears after reset | Set flag before reset; skip save when flag is set |
+| CDN caching | Deployed page shows stale content | Append content hash to filenames |
+
+---
+
+## Phase 5: Launch
+
+### Cleanup
+1. Add `.gitignore`
+2. Write `README.md` (intro + quick start + docs navigation)
+3. Sync documentation with code
+
+### Git Workflow
+```bash
+git init
+git add -A
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin <URL>
+git push -u origin main
+```
+
+### Post-Launch
+- Add repo description and topics
+- Enable GitHub Pages or cloud static hosting if deployable
+- Set up CDN cache-busting for cloud-hosted apps
+
+---
+
+## Quick Reference
+
+```
+Requirements → Data Design → Algorithm/Visual Specs
+       ↓
+Tech Selection + Architecture
+       ↓
+Skeleton → State → Data Injection
+       ↓
+Scenes → Modals → Persistence
+       ↓
+Testing → Code Review → Bug Fixes
+       ↓
+README + .gitignore → Commit → Push → Launch
+```
