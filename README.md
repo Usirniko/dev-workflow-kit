@@ -1,67 +1,115 @@
 # Dev Workflow Kit
 
-> 让 AI 帮你写代码时不再瞎猜。这套方法论会教 AI 在动手前先问你 16 个关键问题，把需求聊清楚了再开工。然后按五个阶段一步步推进，从想法到上线全都有章可循。
+> 让 AI 帮你写代码时不再瞎猜。这套方法论会教 AI 在动手前先问你 16 个关键问题，把需求聊清楚了再开工。然后按五个阶段一步步推进，从想法到上线全都有章可循。支持 Cursor、Copilot、Windsurf、IMA 等主流 AI 编程助手。
 
-## 支持的工具
+---
 
-| 工具 | 使用方式 |
-|------|---------|
-| **Cursor** | 将 `通用技能/cursor/.cursorrules` 复制到项目根目录 |
-| **GitHub Copilot / Codex** | 将 `通用技能/codex/copilot-instructions.md` 复制到 `.github/` 目录 |
-| **Windsurf** | 将 `通用技能/windsurf/.windsurfrules` 复制到项目根目录 |
-| **IMA / cuser / 其他** | 打开 `通用技能/system-prompt.md`，全文复制粘贴到自定义指令设置 |
-| **CodeBuddy** | 已内置在 `.codebuddy/skills/dev-workflow/` 中，自动生效 |
+## 这个项目解决什么问题？
 
-## 方法论内容
+用 AI 写代码最怕什么？**还没聊清楚需求，AI 就开始咔咔写**，结果写出来的东西和你想的完全不一样，反复改来改去浪费大量时间。
 
-### Phase 0：项目前期探测（动手前必问）
+这套方法论就像一个"AI 编程的说明书"——把它装到你的 AI 工具里，AI 就会**先问够问题、再动手写代码**，避免返工。
 
-4 轮 16 个问题，帮你把需求聊透再写代码：
+---
 
-- **Round 1**：这是什么项目？给谁用？有没有参考？
-- **Round 2**：核心功能有哪些？要不要登录？数据存哪？有哪些界面？界面怎么跳转？
-- **Round 3**：用什么技术栈？偏什么设计风格？有什么平台限制？
-- **Round 4**：出错了怎么办？要不要多语言？接不接第三方服务？
+## 怎么用？
 
-### Phase 1-5：全链路开发
+### 第 1 步：找到适合你的文件
 
-| 阶段 | 做什么 |
-|------|--------|
-| Phase 1 需求 | PRD、数据结构、算法伪代码、视觉规范 |
-| Phase 2 技术选型 | 技术栈决策、架构图、状态管理、持久化方案 |
-| Phase 3 编码实现 | 7 步实施顺序 + 编码原则 + 防御性编程 |
-| Phase 4 测试修复 | 功能测试、代码审查清单、5 个常见陷阱 |
-| Phase 5 上线发布 | 项目清理、Git 工作流、CDN 缓存策略 |
+打开 `通用技能/` 文件夹，根据你用的工具选择：
 
-## 仓库结构
+| 你用的工具 | 文件夹 | 文件 |
+|-----------|--------|------|
+| Cursor | `cursor/` | `.cursorrules` |
+| GitHub Copilot | `codex/` | `copilot-instructions.md` |
+| Windsurf | `windsurf/` | `.windsurfrules` |
+| IMA、cuser 等 | — | `system-prompt.md` |
+| CodeBuddy | — | 直接用，无需操作 |
+
+### 第 2 步：放到项目中
+
+**Cursor 用户**：把 `.cursorrules` 复制到你的项目根目录。
 
 ```
-├── .codebuddy/skills/dev-workflow/   # CodeBuddy 原生 Skill（自动生效）
-│   ├── SKILL.md
-│   └── references/workflow-guide.md  # 方法论全文
-├── 通用技能/                           # 🌟 所有工具的技能文件（统一入口）
-│   ├── README.md                      # 各工具使用说明
-│   ├── 项目开发流程总结.md              # 方法论中文总结
-│   ├── system-prompt.md               # 通用版，粘贴到任意工具
-│   ├── cursor/.cursorrules
-│   ├── codex/copilot-instructions.md
-│   ├── windsurf/.windsurfrules
-│   └── codebuddy/                     # CodeBuddy 技能文件副本
-└── README.md
+你的项目/
+├── .cursorrules    ← 把这个文件放进来
+├── index.html
+├── src/
+└── ...
 ```
 
-## 快速开始
+**GitHub Copilot 用户**：在项目根目录创建 `.github/` 文件夹，把 `copilot-instructions.md` 放进去。
 
-```bash
-# Cursor 用户
-cp 通用技能/cursor/.cursorrules 你的项目/
-
-# Copilot 用户
-mkdir -p 你的项目/.github
-cp 通用技能/codex/copilot-instructions.md 你的项目/.github/
-
-# Windsurf 用户
-cp 通用技能/windsurf/.windsurfrules 你的项目/
+```
+你的项目/
+└── .github/
+    └── copilot-instructions.md    ← 放这里
 ```
 
-之后只要在 `通用技能/` 中找到适合你工具的文件夹，复制对应文件到项目根目录即可。
+**Windsurf 用户**：把 `.windsurfrules` 复制到项目根目录。
+
+**IMA / cuser / 通用工具**：打开 `system-prompt.md`，全选复制，粘贴到工具的「自定义指令」或「系统提示词」设置里。
+
+> ⚠️ 放好后**关闭 AI 对话窗口再重新打开**，让新规则生效。
+
+### 第 3 步：正常开始对话
+
+放好文件后，像平时一样跟 AI 对话就行。当你说"帮我做一个 xxx"时，AI 会自动先按流程问你关键问题，而不是直接写代码。
+
+### 会用起来是什么感觉？
+
+比如你说「帮我做个记账应用」，AI 不会直接开始写代码，而是会这样引导你：
+
+> 好的，我先问几个问题理清需求：
+> 1. 这个应用给谁用？一个人用还是多人共用？
+> 2. 需要记录哪些类型的账目？
+> 3. 数据需要长期保存吗？存本地还是云端？
+> ...
+
+等你回答了这些问题，AI 才会进入下一步——出需求文档、设计界面、写代码。
+
+---
+
+## 五个阶段做什么？
+
+| 阶段 | 做什么 | 产出 |
+|------|--------|------|
+| **Phase 0** 需求探测 | 4 轮 16 个问题，聊透再开工 | 明确的需求清单 |
+| **Phase 1** 需求文档 | PRD、数据结构、界面规划 | 产品需求文档 |
+| **Phase 2** 技术选型 | 技术栈、架构、状态管理 | 技术方案 |
+| **Phase 3** 编码实现 | 7 步实施顺序 + 编码原则 | 可运行的代码 |
+| **Phase 4** 测试修复 | 功能测试、代码审查、常见陷阱 | 稳定的产品 |
+| **Phase 5** 上线发布 | 清理、Git 工作流、部署 | 线上可访问 |
+
+---
+
+## 仓库有什么？
+
+```
+├── 通用技能/                       # 所有工具的技能文件
+│   ├── cursor/.cursorrules        # Cursor 规则
+│   ├── codex/copilot-instructions.md  # Copilot 规则
+│   ├── windsurf/.windsurfrules    # Windsurf 规则
+│   ├── system-prompt.md           # 通用版（粘贴即可）
+│   ├── codebuddy/                 # CodeBuddy 版
+│   ├── 项目开发流程总结.md          # 方法论中文详解
+│   └── README.md                  # 详细使用说明
+├── .codebuddy/skills/             # CodeBuddy 原生 Skill
+└── README.md                      # 你现在看的这个文件
+```
+
+---
+
+## 常见问题
+
+**Q：我同时用多个 AI 工具怎么办？**  
+每个项目放对应的文件就行，互不影响。比如 Cursor 项目放 `.cursorrules`，Copilot 项目放 `copilot-instructions.md`。
+
+**Q：用了之后 AI 会不会变得很啰嗦？**  
+前期会多问几句，但这些问题都是**本来你就得想清楚的**。聊透了再写，反而更快。
+
+**Q：能用在非前端项目吗？**  
+可以。方法论的核心是「先想清楚再动手」，后端、脚本、小程序都适用。
+
+**Q：怎么确认规则生效了？**  
+新开对话后，跟 AI 说「帮我做个 xxx」，看它会不会先问你问题而不是直接写代码。
