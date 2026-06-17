@@ -41,12 +41,12 @@
 │   └── references/workflow-guide.md  # 方法论全文
 ├── 通用技能/                           # 🌟 所有工具的技能文件（统一入口）
 │   ├── README.md                      # 各工具使用说明
+│   ├── 项目开发流程总结.md              # 方法论中文总结
 │   ├── system-prompt.md               # 通用版，粘贴到任意工具
 │   ├── cursor/.cursorrules
 │   ├── codex/copilot-instructions.md
 │   ├── windsurf/.windsurfrules
 │   └── codebuddy/                     # CodeBuddy 技能文件副本
-├── 项目开发流程总结.md                 # 方法论中文总结
 └── README.md
 ```
 
