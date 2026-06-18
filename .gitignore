@@ -1,8 +1,13 @@
-# 集成配置（含密钥信息）
-.codebuddy/integration/
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
 
-# 企鹅应用（个人项目，不提交到公开仓库）
-企鹅应用/
+# OS
+Thumbs.db
 
-# Node modules
+# Node
 node_modules/

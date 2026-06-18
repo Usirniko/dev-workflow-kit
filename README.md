@@ -1,6 +1,6 @@
 # Dev Workflow Kit
 
-> 让 AI 帮你写代码时不再瞎猜。这套方法论会教 AI 在动手前先问你 16 个关键问题，把需求聊清楚了再开工。然后按五个阶段一步步推进，从想法到上线全都有章可循。支持 Cursor、Copilot、Windsurf、Trae、IMA 等主流 AI 编程助手。
+> 让 AI 帮你写代码时不再瞎猜。这套方法论会教 AI 在动手前先问你 16 个关键问题，把需求聊清楚了再开工。然后按五个阶段一步步推进，从想法到上线全都有章可循。支持 CodeBuddy、Cursor、Copilot、Windsurf、Trae、IMA 等主流 AI 编程助手。
 
 ---
 
@@ -23,7 +23,8 @@
 | Cursor | `cursor/` | `.cursorrules` | 项目根目录 |
 | GitHub Copilot | `codex/` | `copilot-instructions.md` | `.github/copilot-instructions.md` |
 | Windsurf | `windsurf/` | `.windsurfrules` | 项目根目录 |
-| **Trae** | `trae/` | `.trae/rules/dev-workflow.md` | 项目根目录（直接复制整个 `.trae/` 文件夹） |
+| Trae | `trae/` | `.trae/rules/dev-workflow.md` | 项目根目录（直接复制整个 `.trae/` 文件夹） |
+| CodeBuddy | `codebuddy/` | `SKILL.md` | `.codebuddy/skills/dev-workflow/` |
 | IMA、cuser 等 | — | `system-prompt.md` | 粘贴到「自定义指令」中 |
 
 ### 第 2 步：放到项目中
@@ -54,6 +55,18 @@
 └── .trae/
     └── rules/
         └── dev-workflow.md    ← 放这里
+```
+
+**CodeBuddy 用户**：把 `codebuddy/` 文件夹的内容复制到项目的 `.codebuddy/skills/dev-workflow/` 下。
+
+```
+你的项目/
+└── .codebuddy/
+    └── skills/
+        └── dev-workflow/
+            ├── SKILL.md              ← 放这里
+            └── references/
+                └── workflow-guide.md ← 放这里
 ```
 
 **IMA / cuser / 通用工具**：打开 `system-prompt.md`，全选复制，粘贴到工具的「自定义指令」或「系统提示词」设置里。
@@ -94,14 +107,16 @@
 ## 仓库有什么？
 
 ```
-├── cursor/.cursorrules            # Cursor 规则
-├── codex/copilot-instructions.md  # Copilot 规则
-├── windsurf/.windsurfrules        # Windsurf 规则
-├── trae/.trae/rules/              # Trae 规则
-├── codebuddy/                     # CodeBuddy Skill
-├── system-prompt.md               # 通用版（粘贴即可）
-├── 项目开发流程总结.md              # 方法论中文详解
-└── README.md                      # 你现在看的这个文件
+├── cursor/.cursorrules                # Cursor 规则
+├── codex/copilot-instructions.md      # Copilot 规则
+├── windsurf/.windsurfrules            # Windsurf 规则
+├── trae/.trae/rules/dev-workflow.md   # Trae 规则
+├── codebuddy/                         # CodeBuddy Skill
+│   ├── SKILL.md
+│   └── references/workflow-guide.md
+├── system-prompt.md                   # 通用版（粘贴即可）
+├── 项目开发流程总结.md                  # 方法论中文详解
+└── README.md                          # 你现在看的这个文件
 ```
 
 ---
@@ -119,3 +134,12 @@
 
 **Q：怎么确认规则生效了？**  
 新开对话后，跟 AI 说「帮我做个 xxx」，看它会不会先问你问题而不是直接写代码。
+
+---
+
+## 版本
+
+- `v1.3` — 2026-06-18：整理仓库结构，删除无关文件（CloudBase 规则等），同步 CodeBuddy Skill 到最新版，新增 `.gitignore`
+- `v1.2` — 2026-06-18：提问优化（一次一问+编号选项）、每个阶段自动生成 MD 文档（共 13 份）、文档交付规则
+- `v1.1` — 2026-06-17：新增界面规划问题（Q8-Q9），支持多工具格式
+- `v1.0` — 2026-06-17：初始版本
