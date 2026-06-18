@@ -49,8 +49,22 @@ mandatory — do NOT skip it even if the user's request seems detailed. The ques
 surface hidden requirements and prevent rework later. For the complete question list,
 see Phase 0 in `references/workflow-guide.md`.
 
-Core principle: **ask no more than 3-4 questions at a time** to avoid overwhelming the
-user. Start with the most critical questions, then follow up based on responses.
+Core principle: **ask exactly ONE question at a time**. Wait for the user's response
+before asking the next question. NEVER batch multiple questions together in a single
+message. Start with the most critical question, then follow up based on the response.
+
+**Always provide numbered options** when the question has a limited set of reasonable
+answers. The user can reply with just a number (e.g., "1") or type their own answer.
+This dramatically reduces typing effort. Example format:
+
+> 视觉风格你喜欢哪种？
+> 1. 像素复古风（黑底绿蛇）
+> 2. 极简扁平风
+> 3. 赛博朋克风
+> 4. 你有其他想法吗？
+
+If the question is open-ended (no natural options), ask it plainly without options.
+If you have a strong recommendation, put it as option 1 and mention it's recommended.
 
 ### Step 3: Assess the Project Stage
 
@@ -86,7 +100,32 @@ The guide includes actionable checklists that should be referenced at each phase
 - **Phase 4**: Test path coverage, code review checklist (6 items), common trap table
 - **Phase 5**: Pre-launch cleanup, Git workflow commands, CDN cache strategy
 
-### Step 6: Adapt to the User's Stack
+### Step 6: Generate Documentation at Every Phase (MANDATORY)
+
+At each phase, proactively generate and save MD documentation files. This is NOT
+optional — documentation is a deliverable, not an afterthought. Create a `docs/`
+folder in the project root and generate these files:
+
+| Phase | Documents to Generate |
+|-------|----------------------|
+| Phase 0 (Discovery) | `docs/需求概述.md` — summarized user requirements, target users, MVP scope |
+| Phase 1 (Requirements) | `docs/PRD.md` — product requirements doc; `docs/数据结构设计.md` — data entities, fields, relationships; `docs/UI设计规范.md` — colors, typography, component styles; `docs/大纲.md` — project outline, page tree, implementation order |
+| Phase 2 (Architecture) | `docs/技术架构.md` — tech stack decisions, module diagram, state management, persistence plan; `docs/项目结构.md` — directory structure, file naming conventions, module responsibilities |
+| Phase 3 (Implementation) | `docs/开发日志.md` — implementation notes, decisions made during coding; `docs/环境配置.md` — local dev environment setup, dependencies, env variables |
+| Phase 4 (Testing) | `docs/测试报告.md` — test cases executed, bugs found and fixed |
+| Phase 5 (Launch) | `README.md` — project intro, quick start, feature list, docs index; `CHANGELOG.md` — version history with dates and changes; `.gitignore` — exclude caches and editor configs; `docs/部署文档.md` — build, deploy, CDN strategy; `docs/常见问题.md` — FAQ covering dev, build, and deployment issues |
+
+Key rules:
+- Generate documents at the END of each phase, using the information gathered during that phase
+- Save the complete document content directly to the file via `write_to_file`
+- **Do NOT paste the full document content in the chat.** Instead, give the user a short
+  2-3 sentence summary of what the document covers and why it matters. Example:
+  > 📄 已生成 `docs/PRD.md` — 记录了产品定位、核心功能和页面交互流程，后续开发以此为需求基准。
+- If the user wants adjustments, revise the document before moving to the next phase
+- Documents serve as the project's long-term reference — write them clearly enough
+  for someone new to understand the project
+
+### Step 7: Adapt to the User's Stack
 
 The methodology is stack-agnostic. When the user specifies a framework:
 

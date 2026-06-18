@@ -10,7 +10,10 @@ for every project. Never skip Phase 0.
 Before writing ANY code, ask the user clarifying questions. Even if the request seems
 detailed, early clarification prevents costly rework.
 
-**Rule: Ask no more than 3-4 questions at a time.** Start with the most critical ones.
+**Rule: Ask exactly ONE question at a time with numbered options.** Wait for the user's
+response before asking the next question. When a question has limited reasonable answers,
+provide numbered options (e.g., 1. Option A, 2. Option B) so the user can reply with just a
+number. For open-ended questions (e.g., "describe your project"), ask plainly.
 
 ### Round 1 — Project Basics (ask first)
 
@@ -85,6 +88,13 @@ If the user cannot answer some questions, make reasonable assumptions, state the
 - Typography hierarchy (font families, sizes)
 - Component conventions (border-radius, shadow, spacing)
 
+### Phase 1 Deliverable
+Save these MD files to a `docs/` folder:
+- `docs/PRD.md`, `docs/数据结构设计.md`, `docs/UI设计规范.md`, `docs/大纲.md`
+
+After generating each document, give a short 2-3 sentence summary in chat.
+Do NOT paste the full document content.
+
 ---
 
 ## Phase 2: Technology Selection & Architecture
@@ -102,6 +112,12 @@ If the user cannot answer some questions, make reasonable assumptions, state the
 - Define state management approach and global state structure
 - Define scene/route switching logic
 - Decide persistence strategy (localStorage / IndexedDB / backend API / cloud)
+
+### Phase 2 Deliverable
+Save to `docs/` folder:
+- `docs/技术架构.md` — Tech decisions, module diagram, state management, persistence
+- `docs/项目结构.md` — Directory tree, file naming, module responsibilities
+Summarize briefly in chat.
 
 ---
 
@@ -122,6 +138,12 @@ If the user cannot answer some questions, make reasonable assumptions, state the
 - Register UI interactions through a unified mechanism
 - Separate data from logic: constants in config areas, logic in function areas
 - **Defensive programming**: wrap critical flows in try-catch
+
+### Phase 3 Deliverable
+Save to `docs/` folder:
+- `docs/开发日志.md` — Implementation decisions, issues and resolutions
+- `docs/环境配置.md` — Dev environment, dependencies, how to run
+Update `开发日志.md` throughout implementation. Summarize briefly in chat.
 
 ---
 
@@ -150,6 +172,10 @@ If the user cannot answer some questions, make reasonable assumptions, state the
 | Auto-save write-back | Cleared data reappears after reset | Set flag before reset; skip save when flag is set |
 | CDN caching | Deployed page shows stale content | Append content hash to filenames |
 
+### Phase 4 Deliverable
+Save to `docs/`: `docs/测试报告.md` — Test cases, bugs found and fixed, review checklist results.
+Summarize briefly in chat.
+
 ---
 
 ## Phase 5: Launch
@@ -174,20 +200,37 @@ git push -u origin main
 - Enable GitHub Pages or cloud static hosting if deployable
 - Set up CDN cache-busting for cloud-hosted apps
 
+### Phase 5 Deliverable
+Save to project root and `docs/`:
+- `README.md` — Project intro, quick start, features, docs index
+- `CHANGELOG.md` — Version history with dates
+- `.gitignore` — Exclude caches and editor configs
+- `docs/部署文档.md` — Build, deploy, CDN strategy
+- `docs/常见问题.md` — FAQ for dev, build, deployment issues
+Summarize briefly in chat.
+
+---
+
+## Document Delivery Rule
+
+When generating MD documents, write the complete content directly to the file.
+In chat, give only a short 2-3 sentence summary per document.
+Do NOT paste full document content into the conversation.
+
 ---
 
 ## Quick Reference
 
 ```
-Requirements → Data Design → Algorithm/Visual Specs
-       ↓
-Tech Selection + Architecture
-       ↓
-Skeleton → State → Data Injection
-       ↓
-Scenes → Modals → Persistence
-       ↓
-Testing → Code Review → Bug Fixes
-       ↓
-README + .gitignore → Commit → Push → Launch
+需求概述 → PRD + 大纲 + 数据设计 + UI规范
+    ↓
+技术选型 + 技术架构 + 项目结构
+    ↓
+骨架 → 状态管理 → 数据注入
+    ↓
+场景实现 → 辅助模块 → 持久化
+    ↓  (同步产出：开发日志 + 环境配置)
+全流程测试 → 代码审查 → Bug修复
+    ↓  (产出：测试报告)
+README + CHANGELOG + .gitignore + 部署文档 + 常见问题 → Git提交 → 发布
 ```

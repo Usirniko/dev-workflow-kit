@@ -12,7 +12,17 @@ workflow for every project. Never skip Phase 0.
 **Before writing ANY code**, ask the user clarifying questions. Even if the request seems
 detailed, early clarification prevents costly rework.
 
-**Rule: Ask no more than 3-4 questions at a time.**
+**Rule: Ask exactly ONE question at a time. Provide numbered options whenever possible.**
+Wait for the user's response before asking the next question. This creates a natural
+conversational rhythm and prevents the user from feeling overwhelmed.
+
+Example of numbered options:
+> 视觉风格你喜欢哪种？
+> 1. 像素复古风（推荐）
+> 2. 极简扁平风
+> 3. 你有其他想法吗？
+
+For open-ended questions (e.g., "describe your project"), ask plainly without options.
 
 ### Round 1 — Project Basics (ask first)
 
@@ -71,11 +81,23 @@ If answers are missing, make reasonable assumptions, state them, and proceed.
 - **Algorithms**: Core logic in pseudocode; note edge cases
 - **Visual Spec**: Color scheme, typography, component conventions
 
+### Phase 1 Deliverable
+Generate these MD documents in a `docs/` folder:
+- `docs/PRD.md` — Product Requirements Document
+- `docs/数据结构设计.md` — Data entity fields, relationships, sample data
+- `docs/UI设计规范.md` — Colors, typography, component styles
+- `docs/大纲.md` — Project outline, page tree, implementation order
+
 ## Phase 2: Technology Selection & Architecture
 
 - **Tech Stack**: Pure frontend / framework / full-stack — choose based on requirements
 - **Architecture**: Module relationship diagram, state management, route design
 - **Persistence**: localStorage / IndexedDB / backend API / cloud
+
+### Phase 2 Deliverable
+Generate:
+- `docs/技术架构.md` — Tech decisions, module diagram, state management, persistence plan
+- `docs/项目结构.md` — Directory tree, file naming, module responsibilities
 
 ## Phase 3: Implementation (This Exact Order)
 
@@ -94,31 +116,58 @@ If answers are missing, make reasonable assumptions, state them, and proceed.
 - Data and logic separated
 - Defensive programming: try-catch on critical flows
 
+### Phase 3 Deliverable
+Generate:
+- `docs/开发日志.md` — Implementation decisions and issues resolved
+- `docs/环境配置.md` — Dev environment, dependencies, how to run
+
 ## Phase 4: Testing & Bug Fixing
 
 - **Test**: Happy path, error paths, edge cases
 - **Code Review**: Syntax errors, special characters, console.log remnants, duplicate IDs, dead code
 - **Common Traps**: Modal-scene coupling, auto-save write-back, CDN caching
 
+### Phase 4 Deliverable
+Generate `docs/测试报告.md` — Test cases executed, bugs found and fixed.
+
 ## Phase 5: Launch
 
-1. Add `.gitignore` + write `README.md`
+1. Add `.gitignore` + write `README.md` + `CHANGELOG.md`
 2. Sync documentation with code
 3. `git init → add -A → commit → push`
 4. Set up hosting/deployment
+
+### Phase 5 Deliverable
+Generate:
+- `README.md` — Project intro, quick start, features, docs index
+- `CHANGELOG.md` — Version history
+- `.gitignore` — Exclude caches and editor configs
+- `docs/部署文档.md` — Build, deploy, CDN strategy
+- `docs/常见问题.md` — FAQ for dev, build, deployment issues
+
+---
+
+## Document Delivery Rule
+
+When generating MD documents:
+- **Write the complete content directly to the file** — do NOT paste full content in chat
+- **In chat, give only a short 2-3 sentence summary** of what the doc covers
+- This keeps the conversation readable and fast-moving
 
 ---
 
 ## Quick Reference
 
 ```
-Requirements → Data Design → Algorithm/Visual Specs
-       ↓
-Tech Selection + Architecture
-       ↓
-Skeleton → State → Data → Scenes → Modals → Persistence
-       ↓
-Testing → Code Review → Bug Fixes
-       ↓
-README + .gitignore → Commit → Push → Launch
+需求概述 → PRD + 大纲 + 数据设计 + UI规范
+    ↓
+技术选型 + 技术架构 + 项目结构
+    ↓
+骨架 → 状态管理 → 数据注入
+    ↓
+场景实现 → 辅助模块 → 持久化
+    ↓  (同步产出：开发日志 + 环境配置)
+全流程测试 → 代码审查 → Bug修复
+    ↓  (产出：测试报告)
+README + CHANGELOG + .gitignore + 部署文档 + 常见问题 → Git提交 → 发布
 ```

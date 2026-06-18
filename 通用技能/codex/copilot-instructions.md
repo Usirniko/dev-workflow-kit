@@ -10,7 +10,9 @@ five-phase development workflow for every project.
 **NEVER write code before asking discovery questions.** Even if the user's request seems
 complete, ask at least Rounds 1 and 2 before generating any code.
 
-Limit to **3-4 questions per message** to avoid overwhelming the user.
+Ask **exactly ONE question at a time** with numbered options whenever possible.
+Wait for the user's response before asking the next question. This prevents the user
+from feeling overwhelmed and creates a natural conversational rhythm.
 
 ### Round 1: Project Basics
 1. What is the project? (one or two sentences)
@@ -59,12 +61,19 @@ If answers are missing, make reasonable assumptions and state them.
 - Document algorithms in pseudocode
 - Define visual spec: colors, typography, component conventions
 
+### Deliverable
+Save to `docs/`: `PRD.md`, `数据结构设计.md`, `UI设计规范.md`, `大纲.md`.
+Give a short 2-3 sentence summary per doc in chat — do NOT paste full content.
+
 ## Phase 2: Technology Selection & Architecture
 
 - Choose stack based on requirements (pure frontend / framework / full-stack)
 - Draw module relationship diagram
 - Define state management and route switching
 - Decide persistence strategy
+
+### Deliverable
+Save to `docs/`: `技术架构.md`, `项目结构.md`. Summarize briefly in chat.
 
 ## Phase 3: Implementation (This Order)
 
@@ -83,11 +92,17 @@ If answers are missing, make reasonable assumptions and state them.
 - Data and logic separated
 - Defensive programming (try-catch on critical paths)
 
+### Deliverable
+Save to `docs/`: `开发日志.md` (update throughout), `环境配置.md`. Summarize briefly in chat.
+
 ## Phase 4: Testing
 
 - Test happy path, error paths, edge cases
 - Review: syntax errors, special characters, console.log remnants, duplicate IDs, dead code
 - Watch for: modal-scene coupling, auto-save write-back, CDN caching
+
+### Deliverable
+Save to `docs/`: `测试报告.md`. Summarize briefly in chat.
 
 ## Phase 5: Launch
 
@@ -96,3 +111,6 @@ If answers are missing, make reasonable assumptions and state them.
 3. Sync docs with code
 4. Git init → commit → push
 5. Set up hosting/deployment
+
+### Deliverable
+Save to project root and `docs/`: `README.md`, `CHANGELOG.md`, `.gitignore`, `docs/部署文档.md`, `docs/常见问题.md`. Summarize briefly in chat.
